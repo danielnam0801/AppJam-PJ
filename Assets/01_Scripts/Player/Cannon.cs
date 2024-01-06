@@ -35,6 +35,13 @@ public class Cannon : MonoBehaviour
         player = PlayerManager.Instance.Player;
         InCannonTIme = 0;
     }
+    
+    public void Init()
+    {
+        curAngle = baseAngle;
+        guageUpdir = 1;
+        InCannonTIme = 0;
+    }
 
     private void Update()
     {
@@ -78,7 +85,7 @@ public class Cannon : MonoBehaviour
     float lerpValue;
     public void MouseUp(float curAngle)
     {
-        Vector2 curShootVec = DegreeToVector2(curAngle).normalized;
+        Vector2 curShootVec = PlayerManager.DegreeToVector2(curAngle).normalized;
         curShootVec.x *= -1;
 
         lerpValue = (maxAngle - minAngle) / ((int)EShootPowerState.End);
@@ -92,13 +99,16 @@ public class Cannon : MonoBehaviour
         else if (enumValue == 1)
         {
             state = EShootPowerState.Normal;
-        }else if (enumValue == 2)
+        }
+        else if (enumValue == 2)
         {
             state = EShootPowerState.Strong;
-        }else if (enumValue == 3)
+        }
+        else if (enumValue == 3)
         {
             state = EShootPowerState.Normal;
-        }else if (enumValue == 4)
+        }
+        else if (enumValue == 4)
         {
             state = EShootPowerState.Weak;
         }
@@ -109,16 +119,4 @@ public class Cannon : MonoBehaviour
         //PlayerManager.Instance.Player.Shoot(curShootVec, (EShootPowerState)enumValue);    
         PlayerManager.Instance.Player.Shoot(curShootVec, state);    
     }
-
-    public Vector2 RadianToVector2(float radian)
-    {
-        return new Vector2(Mathf.Cos(radian), Mathf.Sin(radian));
-    }
-
-    public Vector2 DegreeToVector2(float degree)
-    {
-        return RadianToVector2(degree * Mathf.Deg2Rad);
-    }
-
-
 }
