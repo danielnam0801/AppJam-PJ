@@ -65,6 +65,7 @@ public class UpgradeManager : MonoSingleton<UpgradeManager>
                     GameManager.Instance.UpgradeSpeedX();
                     break;
             }
+            SoundManager.Instance.PlaySFX("upgrade");
             levetTxt[(int)CurType]++;
            
         }

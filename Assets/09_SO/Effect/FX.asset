@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31aac02ed899534478850a778bfbac93, type: 3}
+  m_Name: FX
+  m_EditorClassIdentifier: 
+  clipList:
+  - {fileID: 8300000, guid: 72fef3e950b2db54e88ff04750a4d533, type: 3}
+  - {fileID: 8300000, guid: e2e4c0b9ef8d750408381e849e0cf314, type: 3}
+  - {fileID: 8300000, guid: a7d75c41203ec4747899c03625a52217, type: 3}
+  - {fileID: 8300000, guid: 980a0235733d12a47b2255e130d89cea, type: 3}
+  - {fileID: 8300000, guid: cf12eb60045c39f46a774d03f1d17321, type: 3}
+  - {fileID: 8300000, guid: fca0f790e3df89c4d9d8b44eb0fc77d1, type: 3}
+  - {fileID: 8300000, guid: 846a9779bb76b4242badb8e63a0d395f, type: 3}

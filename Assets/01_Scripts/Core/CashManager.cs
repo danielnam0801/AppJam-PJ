@@ -31,4 +31,12 @@ public class CashManager : MonoSingleton<CashManager>
     }
 
     public bool MoneyCompare(int money) => money < cash;
+
+    public void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.J))
+        {
+            IncreaseCash(1000);
+        }
+    }
 }

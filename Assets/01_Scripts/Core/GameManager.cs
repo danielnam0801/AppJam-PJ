@@ -33,6 +33,10 @@ public class GameManager : MonoSingleton<GameManager>
     [SerializeField] private float LimitYSpeedJelly = 5;
     [SerializeField] private float LimitYSpeedGround = 5;
 
+
+    [SerializeField] private GameObject ClearEffect;
+    [SerializeField] private GameObject DieEffect;
+
     public GameState CurGameState => gameState;
     public void SetGameState(GameState state) => gameState = state;
     public float JellyBounciess { get; set; }
@@ -48,6 +52,7 @@ public class GameManager : MonoSingleton<GameManager>
         curLimitXSpeed = reBoundXSpeed;
         SetGameState(GameState.Start);
         GameStart();
+        SoundManager.Instance.PlayBGM("Bgm");
     }
 
     public void UpgradeSpeedX()
@@ -144,6 +149,8 @@ public class GameManager : MonoSingleton<GameManager>
     {
         SetGameState(GameState.GameOver);
         UIManager.Instance.GameOverUI();
+        GameObject effect = Instantiate(DieEffect, PlayerManager.Instance.PlayerTrm.position, Quaternion.identity);
+        Destroy(effect, 5f);
         //throw new NotImplementedException();
     }
 
@@ -151,5 +158,12 @@ public class GameManager : MonoSingleton<GameManager>
     {
         yield return new WaitForSeconds(time);
         act?.Invoke();
+    }
+
+    public void GameClear()
+    {
+        PlayerManager.Instance.Player.GameOver();
+        GameObject effect = Instantiate(ClearEffect, PlayerManager.Instance.PlayerTrm.position, Quaternion.identity);
+        Destroy(effect, 5f);
     }
 }

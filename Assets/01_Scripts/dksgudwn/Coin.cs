@@ -7,6 +7,7 @@ public class Coin : MonoBehaviour
         if (other.tag == "Player")
         {
             CashManager.Instance.IncreaseCash(1);
+            SoundManager.Instance.PlaySFX("coin");
             print("ÄÚÀÎÈ¹µæ");
             Destroy(gameObject);
         }

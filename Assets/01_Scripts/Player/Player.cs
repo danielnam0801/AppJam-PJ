@@ -51,6 +51,7 @@ public class Player : MonoBehaviour
 
     public void InWater()
     {
+        SoundManager.Instance.PlaySFX("splashWater");
         StopImmediately();
         GameOver();
     }
@@ -257,12 +258,15 @@ public class Player : MonoBehaviour
         {
             case EObstacleType.Whale:
                 CashManager.Instance.IncreaseCash(20);
+                SoundManager.Instance.PlaySFX("whaleExplodeWater");
                 break;
             case EObstacleType.Ground:
+                SoundManager.Instance.PlaySFX("takeGround");
                 break;
             case EObstacleType.Rock:
                 break;
             case EObstacleType.JellyFish:
+                SoundManager.Instance.PlaySFX("reflectObstacle");
                 CashManager.Instance.IncreaseCash(20);
                 break;
             case EObstacleType.Water:
