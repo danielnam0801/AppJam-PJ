@@ -75,18 +75,11 @@ public class Player : MonoBehaviour
             Init();
         }
 
+        if (Time.timeScale == 0f) return;
         if (gameOver && !canInteract) return;
         curState = PlayerManager.Instance.CurPlayerState;
-        if(clickTIme == true)
-        {
-            clickTimer += Time.deltaTime;
-            if(clickTimer > afterClickTime)
-            {
-                canClick = true;
-                clickTIme = false;
-            }
-        }
-        if(Input.GetMouseButtonUp(0))
+        SetClick(true);
+        if (Input.GetMouseButtonUp(0))
         {
             switch (curState)
             {
@@ -94,13 +87,35 @@ public class Player : MonoBehaviour
                     DoReady();
                     break;
                 case EPlayerState.Fly:
-                    if(canClick)
+                    if (canClick)
                         AddGravity();
                     break;
             }
         }
         CheckFlip();
         CheckGameOver();
+    }
+
+    public void SetClick(bool value)
+    {
+        if(value)
+        {
+            if (clickTIme == true)
+            {
+                canClick = false;
+                clickTimer += Time.deltaTime;
+                if (clickTimer > afterClickTime)
+                {
+                    canClick = true;
+                    clickTIme = false;
+                    clickTimer = 0f;
+                }
+            }
+        }
+        else
+        {
+            canClick = false;
+        }
     }
 
     private void CheckFlip()
@@ -116,6 +131,7 @@ public class Player : MonoBehaviour
 
     private void DoReady()
     {
+        GameManager.Instance.GamePlay();
         transform.position = PlayerManager.Instance.CannonTrm.position;
         PlayerManager.Instance.SetPlayerState(EPlayerState.InCannon);
         UIManager.Instance.SetGuageSliderActive(true);
