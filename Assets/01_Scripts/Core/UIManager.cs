@@ -37,6 +37,14 @@ public class UIManager : MonoSingleton<UIManager>
 
     void Update()
     {
+        if(GameManager.Instance.CurGameState == GameState.GameOver)
+        {
+            if(Input.GetKeyDown(KeyCode.Space))
+            {
+                GameManager.Instance.Restart();
+            }
+        }
+
         Vector3 pos = PlayerManager.Instance.PlayerTrm.position;
         distance = pos.x * -1;
 
@@ -102,9 +110,9 @@ public class UIManager : MonoSingleton<UIManager>
         {
             gamePlayUI[i].SetUp(false);
         }
-        for (int i = 0; i < gameStartUI.Length; i++)
+        for (int i = 0; i < gameEndUI.Length; i++)
         {
-            gameStartUI[i].SetUp(true);
+            gameEndUI[i].SetUp(true);
         }
     }
 

@@ -41,9 +41,12 @@ public class Player : MonoBehaviour
     bool gameOver = false;
     bool canInteract = true;
 
+    Vector3 basePos;
+
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
+        basePos = transform.position; 
     }
 
     public void InWater()
@@ -60,12 +63,14 @@ public class Player : MonoBehaviour
     public void Init()
     {
         curState = EPlayerState.Ready;
+        PlayerManager.Instance.SetPlayerState(curState);
         rigidbody.gravityScale = 0f;
         gameOver = false;
         canInteract = true;
-        clickTIme = false;
+        clickTIme = true;
         canClick = false;
         clickTimer = 0f;
+        transform.position = basePos;
     }
     public void Update()
     {

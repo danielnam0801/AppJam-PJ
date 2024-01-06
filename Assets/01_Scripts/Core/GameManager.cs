@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum GameState
 {
@@ -112,16 +113,43 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void GameStart()
     {
+        
         UIManager.Instance.GameStartUI();
+
+        SetGameState(GameState.Start);
+        //Restart();
+
+    }
+
+
+    public void Restart()
+    {
+        PlayerInit();
+        GameStart();
+    }
+
+
+    private void PlayerInit()
+    {
+        PlayerManager.Instance.Player.Init();
+        PlayerManager.Instance.Cannon.Init();
     }
 
     public void GamePlay()
     {
+        SetGameState(GameState.Play);
         UIManager.Instance.GamePlayUI();
     }
     public void GameOver()
     {
+        SetGameState(GameState.GameOver);
         UIManager.Instance.GameOverUI();
         //throw new NotImplementedException();
+    }
+
+    IEnumerator DelayCoroutine(float time, Action act)
+    {
+        yield return new WaitForSeconds(time);
+        act?.Invoke();
     }
 }

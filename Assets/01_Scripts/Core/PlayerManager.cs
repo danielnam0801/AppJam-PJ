@@ -51,7 +51,24 @@ public class PlayerManager : MonoSingleton<PlayerManager>
 
         curState = EPlayerState.Ready;
     }
-    
+
+    public void OnEnable()
+    {
+        player = FindObjectOfType<Player>();
+        if (player != null)
+        {
+            playerTrm = player.transform;
+        }
+
+        cannon = FindObjectOfType<Cannon>();
+        if (cannon != null)
+        {
+            cannonTrm = cannon.transform;
+        }
+
+        curState = EPlayerState.Ready;
+    }
+
     public void SetPlayerState(EPlayerState playerState)
     {
         curState = playerState;

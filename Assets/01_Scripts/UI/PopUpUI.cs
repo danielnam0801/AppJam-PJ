@@ -58,22 +58,25 @@ public class PopUpUI : UIComponent
                 switch (moveType)
                 {
                     case UIMoveType.Left:
-                        rectTrm.DOAnchorPosX(offpos.x, duration).SetEase(ease).OnComplete(()=>gameObject.SetActive(false));
+                        //rectTrm.DOAnchorPosX(offpos.x, duration).SetEase(ease).OnComplete(()=>gameObject.SetActive(false));
+                        rectTrm.DOAnchorPosX(offpos.x, duration).SetEase(ease);
                         break;
                     case UIMoveType.Right:
-                        rectTrm.DOAnchorPosX(offpos.x, duration).SetEase(ease).OnComplete(() => gameObject.SetActive(false));
+                        //rectTrm.DOAnchorPosX(offpos.x, duration).SetEase(ease).OnComplete(() => gameObject.SetActive(false));
+                        rectTrm.DOAnchorPosX(offpos.x, duration).SetEase(ease);
                         break;
                     case UIMoveType.Up:
-                        rectTrm.DOAnchorPosY(offpos.y, duration).SetEase(ease).OnComplete(() => gameObject.SetActive(false));
+                        //rectTrm.DOAnchorPosY(offpos.y, duration).SetEase(ease).OnComplete(() => gameObject.SetActive(false));
+                        rectTrm.DOAnchorPosY(offpos.y, duration).SetEase(ease);
                         break;
                     case UIMoveType.Down:
-                        rectTrm.DOAnchorPosY(offpos.y, duration).SetEase(ease).OnComplete(() => gameObject.SetActive(false));
+                        //rectTrm.DOAnchorPosY(offpos.y, duration).SetEase(ease).OnComplete(() => gameObject.SetActive(false));
+                        rectTrm.DOAnchorPosY(offpos.y, duration).SetEase(ease);
                         break;
                 }
             }
             else
             {
-                gameObject.SetActive(true);
                 switch (moveType)
                 {
                     case UIMoveType.Left:
@@ -95,12 +98,11 @@ public class PopUpUI : UIComponent
         {
             if(on)
             {
-                gameObject.SetActive(true);
                 rectTrm.DOAnchorPos(onpos, duration).SetEase(ease);
             }
             else
             {
-                rectTrm.DOAnchorPos(offpos, duration).SetEase(ease).OnComplete(()=> gameObject.SetActive(false));
+                rectTrm.DOAnchorPos(offpos, duration).SetEase(ease);
             }
         }
     }
