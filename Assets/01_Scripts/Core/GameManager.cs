@@ -3,11 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum GameState
+{
+    Start, 
+    Play,
+    GameOver
+}
+
 public class GameManager : MonoSingleton<GameManager>
 {
     //[SerializeField] KeyCode inputKeyCode;
     //public KeyCode InputKeyCode => inputKeyCode;
 
+    [SerializeField] GameState gameState = GameState.Start;
 
     [SerializeField] private PhysicsMaterial2D jellyMat;
     [SerializeField] private PhysicsMaterial2D whaleMat;
@@ -23,6 +31,8 @@ public class GameManager : MonoSingleton<GameManager>
     [SerializeField] private float LimitYSpeedJelly = 5;
     [SerializeField] private float LimitYSpeedGround = 5;
 
+    public GameState CurGameState => gameState;
+    public void SetGameState(GameState state) => gameState = state;
     public float JellyBounciess { get; set; }
     public float WhaleBounciess { get; set; }
     public float GroundBounciess { get; set; }
@@ -34,6 +44,7 @@ public class GameManager : MonoSingleton<GameManager>
         WhaleBounciess = whaleMat.bounciness;
         GroundBounciess = groundMat.bounciness;
         curLimitXSpeed = reBoundXSpeed;
+        SetGameState(GameState.Start);
     }
 
     public float GetReboundXSpeed(EObstacleType otType)
@@ -85,8 +96,18 @@ public class GameManager : MonoSingleton<GameManager>
         }
     }
 
-    internal void GameOver()
+    public void GameStart()
     {
+        UIManager.Instance.GameStartUI();
+    }
+
+    public void GamePlay()
+    {
+        UIManager.Instance.GamePlayUI();
+    }
+    public void GameOver()
+    {
+        UIManager.Instance.GameOverUI();
         //throw new NotImplementedException();
     }
 }

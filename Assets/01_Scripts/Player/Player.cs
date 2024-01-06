@@ -116,6 +116,7 @@ public class Player : MonoBehaviour
 
     private void DoReady()
     {
+        GameManager.Instance.GamePlay();
         transform.position = PlayerManager.Instance.CannonTrm.position;
         PlayerManager.Instance.SetPlayerState(EPlayerState.InCannon);
         UIManager.Instance.SetGuageSliderActive(true);
