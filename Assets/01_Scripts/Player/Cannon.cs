@@ -51,12 +51,12 @@ public class Cannon : MonoBehaviour
         InCannonTIme +=Time.deltaTime;
         if (InCannonTIme < 0.2f) return;
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(1))
         {
             MouseDown();
             SetGuage();
         }
-        else if(Input.GetMouseButtonUp(0))
+        else if(Input.GetMouseButtonUp(1))
         {
             MouseUp(curAngle);
         }

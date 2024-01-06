@@ -29,7 +29,7 @@ public class UpgradeManager : MonoSingleton<UpgradeManager>
         CurNeedMoney = baseNeedMoney;
 
         int idx = (int)CurType;
-        abilityName.text = abilitySOs[idx].abilityName + " (" + abilitySOs[idx].abilityLevel + ")";
+        abilityName.text = abilitySOs[idx].abilityName + " (" + levetTxt[idx] + ")";
         abilityDescription.text = abilitySOs[idx].abilityDescription;
         wonText.text = abilitySOs[idx].abilityPrice.ToString() + "won";
     }
@@ -37,7 +37,7 @@ public class UpgradeManager : MonoSingleton<UpgradeManager>
     public void Update()
     {
         int idx = (int)CurType;
-        abilityName.text = abilitySOs[idx].abilityName + " (" + abilitySOs[idx].abilityLevel + ")";
+        abilityName.text = abilitySOs[idx].abilityName + " (" + levetTxt[idx] + ")";
         abilityDescription.text = abilitySOs[idx].abilityDescription;
         wonText.text = abilitySOs[idx].abilityPrice.ToString() + "won";
     }
@@ -48,7 +48,7 @@ public class UpgradeManager : MonoSingleton<UpgradeManager>
         CurType = type;
     }
 
-    public bool Upgrade()
+    public void Upgrade()
     {
         if (CashManager.Instance.UseCash(CurNeedMoney))
         {
@@ -66,9 +66,8 @@ public class UpgradeManager : MonoSingleton<UpgradeManager>
                     break;
             }
             levetTxt[(int)CurType]++;
-            return true;
+           
         }
-        else
-            return false;
+           
     }
 }

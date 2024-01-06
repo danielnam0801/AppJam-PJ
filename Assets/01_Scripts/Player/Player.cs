@@ -69,17 +69,17 @@ public class Player : MonoBehaviour
     }
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            PlayerManager.Instance.Cannon.Init();
-            Init();
-        }
+        //if (Input.GetKeyDown(KeyCode.R))
+        //{
+        //    PlayerManager.Instance.Cannon.Init();
+        //    Init();
+        //}
 
         if (Time.timeScale == 0f) return;
         if (gameOver && !canInteract) return;
         curState = PlayerManager.Instance.CurPlayerState;
         SetClick(true);
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(1))
         {
             switch (curState)
             {

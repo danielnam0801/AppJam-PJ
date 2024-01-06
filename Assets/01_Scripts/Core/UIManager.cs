@@ -49,7 +49,7 @@ public class UIManager : MonoSingleton<UIManager>
             bestDistance = distance;
         }
 
-
+        goldAmount.text = CashManager.Instance.Cash.ToString();
         distanceText.text = distance.ToString();
         distanceSlider.value = 1 - (distance / 10000);
         bestDistanceText.text = bestDistance.ToString();

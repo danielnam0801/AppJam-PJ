@@ -21,6 +21,7 @@ public class FadeUI : UIComponent
         Debug.Log("Fade");
         if (value)
         {
+            gameObject.SetActive(true);
             for (int i = 0; i < images.Length; i++)
             {
                 images[i].DOKill();
@@ -32,7 +33,7 @@ public class FadeUI : UIComponent
             for (int i = 0; i < images.Length; i++)
             {
                 images[i].DOKill();
-                images[i].DOFade(0, duration).SetEase(ease).SetUpdate(true);
+                images[i].DOFade(0, duration).SetEase(ease).SetUpdate(true).OnComplete(()=> gameObject.SetActive(false));
             }
         }
     }
