@@ -1,13 +1,14 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ScaleUpUI : UIComponent
 {
     [SerializeField] GameObject uiObj;
-    [SerializeField] Text text;
+    [SerializeField] TextMeshProUGUI text;
     [SerializeField] float duration = 1f;
     [SerializeField] bool loop = true;
     [SerializeField] Ease ease;
@@ -16,7 +17,8 @@ public class ScaleUpUI : UIComponent
     Vector3 baseVec;
     private void Awake()
     {
-        baseVec = transform.localScale;
+        //baseVec = transform.localScale;
+        baseVec = Vector3.zero;
         SetUp(false);
     }
 
@@ -34,8 +36,9 @@ public class ScaleUpUI : UIComponent
     {
         if (value)
         {
+            this.gameObject.SetActive(true);
             Vector3 endValue = baseVec * scaleUp;
-            if (endValue == Vector3.zero) endValue = Vector3.one;
+            if (endValue == Vector3.zero) endValue = Vector3.one * scaleUp;
             uiObj.transform.DOKill();
             if (loop)
                 uiObj.transform.DOScale(endValue, duration).SetEase(ease).SetLoops(-1, LoopType.Yoyo).SetUpdate(true);
@@ -44,8 +47,8 @@ public class ScaleUpUI : UIComponent
         }
         else
         {
+            uiObj.transform.DOKill();
             uiObj.transform.DOScale(baseVec, duration).SetEase(ease).SetUpdate(true);
         }
-
     }
 }

@@ -12,7 +12,7 @@ public class CashManager : MonoSingleton<CashManager>
 
     public void IncreaseCash(int value, int bounceCount = 1)
     {
-        cash = value * bounceCount;
+        cash += value;
     }
 
     public void DecreaseCash(int value)
