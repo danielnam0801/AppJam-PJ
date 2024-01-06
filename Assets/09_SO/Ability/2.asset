@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c5e04f52bf0b3e4f8c1a446180433ee, type: 3}
   m_Name: 2
   m_EditorClassIdentifier: 
-  abilityImage: {fileID: 0}
+  abilityImage: {fileID: 21300000, guid: 557a7b8365e86864993cc1a411aefad6, type: 3}
   abilityName: Bounce Power
   abilityDescription: Bounce power get stronger
   abilityLevel: 1

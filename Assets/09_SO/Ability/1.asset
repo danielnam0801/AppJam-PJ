@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c5e04f52bf0b3e4f8c1a446180433ee, type: 3}
   m_Name: 1
   m_EditorClassIdentifier: 
-  abilityImage: {fileID: 0}
+  abilityImage: {fileID: 21300000, guid: fc62ec42ae887fb41a93ac34394d2e20, type: 3}
   abilityName: Cannon Power
   abilityDescription: Cannon get  stronger
   abilityLevel: 1
