@@ -16,6 +16,7 @@ public class Obstacle : MonoBehaviour
 {
     public EObstacleType type;
     Collider2D m_collider;
+    Animator m_animator;
 
     private void Awake()
     {
@@ -50,7 +51,10 @@ public class Obstacle : MonoBehaviour
             }
             if (type == EObstacleType.Whale)
             {
-                GetComponentInChildren<Animator>().SetTrigger("Roll");
+                m_animator = GetComponentInChildren<Animator>();
+                print(m_animator);
+                m_animator.SetTrigger("Roll");
+                print("돌고있음");
             }
         }
     }
