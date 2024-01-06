@@ -41,9 +41,12 @@ public class Player : MonoBehaviour
     bool gameOver = false;
     bool canInteract = true;
 
+    Vector3 basePos;
+
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
+        basePos = transform.position; 
     }
 
     public void InWater()
@@ -60,26 +63,28 @@ public class Player : MonoBehaviour
     public void Init()
     {
         curState = EPlayerState.Ready;
+        PlayerManager.Instance.SetPlayerState(curState);
         rigidbody.gravityScale = 0f;
         gameOver = false;
         canInteract = true;
-        clickTIme = false;
+        clickTIme = true;
         canClick = false;
         clickTimer = 0f;
+        transform.position = basePos;
     }
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            PlayerManager.Instance.Cannon.Init();
-            Init();
-        }
+        //if (Input.GetKeyDown(KeyCode.R))
+        //{
+        //    PlayerManager.Instance.Cannon.Init();
+        //    Init();
+        //}
 
         if (Time.timeScale == 0f) return;
         if (gameOver && !canInteract) return;
         curState = PlayerManager.Instance.CurPlayerState;
         SetClick(true);
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(1))
         {
             switch (curState)
             {
@@ -227,6 +232,7 @@ public class Player : MonoBehaviour
 
     private void HitObstacle(EObstacleType obstacleType)
     {
+        CashUpGrade(obstacleType);
         ReturnGravity();
         float angle = PlayerManager.Instance.ReBounceLimitAngle;
 
@@ -243,5 +249,24 @@ public class Player : MonoBehaviour
         Vector2 shootValue = new Vector2(shootVec.x * speedX, shootVec.y * speedY);
         Debug.Log($"reboundVec : {shootValue}");
         rigidbody.AddForce(shootValue, ForceMode2D.Impulse);
+    }
+
+    private void CashUpGrade(EObstacleType obstacleType)
+    {
+        switch (obstacleType)
+        {
+            case EObstacleType.Whale:
+                CashManager.Instance.IncreaseCash(20);
+                break;
+            case EObstacleType.Ground:
+                break;
+            case EObstacleType.Rock:
+                break;
+            case EObstacleType.JellyFish:
+                CashManager.Instance.IncreaseCash(20);
+                break;
+            case EObstacleType.Water:
+                break;
+        }
     }
 }

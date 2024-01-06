@@ -10,6 +10,7 @@ public class PlayerManager : MonoSingleton<PlayerManager>
     //[SerializeField] private float reBounceaddYSpeed = 3;
 
     [SerializeField] private float activeObstacleRange = 10f;
+    [SerializeField] private float AddShootPower = 5f;
 
     
 
@@ -50,7 +51,24 @@ public class PlayerManager : MonoSingleton<PlayerManager>
 
         curState = EPlayerState.Ready;
     }
-    
+
+    public void OnEnable()
+    {
+        player = FindObjectOfType<Player>();
+        if (player != null)
+        {
+            playerTrm = player.transform;
+        }
+
+        cannon = FindObjectOfType<Cannon>();
+        if (cannon != null)
+        {
+            cannonTrm = cannon.transform;
+        }
+
+        curState = EPlayerState.Ready;
+    }
+
     public void SetPlayerState(EPlayerState playerState)
     {
         curState = playerState;
@@ -64,6 +82,11 @@ public class PlayerManager : MonoSingleton<PlayerManager>
     public static Vector2 DegreeToVector2(float degree)
     {
         return RadianToVector2(degree * Mathf.Deg2Rad);
+    }
+
+    public void UpgradeCannonShootPower()
+    {
+        baseShootPower += AddShootPower;
     }
 
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum GameState
 {
@@ -27,6 +28,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     [Header("ReboundSpeed")]
     [SerializeField] private float reBoundXSpeed = 2;
+    [SerializeField] private float xSpeedUpgradeValue = 0.1f;
     [SerializeField] private float LimitYSpeedWHale = 5;
     [SerializeField] private float LimitYSpeedJelly = 5;
     [SerializeField] private float LimitYSpeedGround = 5;
@@ -46,6 +48,11 @@ public class GameManager : MonoSingleton<GameManager>
         curLimitXSpeed = reBoundXSpeed;
         SetGameState(GameState.Start);
         GameStart();
+    }
+
+    public void UpgradeSpeedX()
+    {
+        reBoundXSpeed += xSpeedUpgradeValue;
     }
 
     public float GetReboundXSpeed(EObstacleType otType)
@@ -97,18 +104,52 @@ public class GameManager : MonoSingleton<GameManager>
         }
     }
 
+    public void UpgradeAll()
+    {
+        WhaleBounciess += WhaleBounciessUpgradeValue;
+        GroundBounciess += GroundBounciessUpgradeValue;
+        JellyBounciess += JellyBounciessUpgradeValue;
+    }
+
     public void GameStart()
     {
+        
         UIManager.Instance.GameStartUI();
+
+        SetGameState(GameState.Start);
+        //Restart();
+
+    }
+
+
+    public void Restart()
+    {
+        PlayerInit();
+        GameStart();
+    }
+
+
+    private void PlayerInit()
+    {
+        PlayerManager.Instance.Player.Init();
+        PlayerManager.Instance.Cannon.Init();
     }
 
     public void GamePlay()
     {
+        SetGameState(GameState.Play);
         UIManager.Instance.GamePlayUI();
     }
     public void GameOver()
     {
+        SetGameState(GameState.GameOver);
         UIManager.Instance.GameOverUI();
         //throw new NotImplementedException();
+    }
+
+    IEnumerator DelayCoroutine(float time, Action act)
+    {
+        yield return new WaitForSeconds(time);
+        act?.Invoke();
     }
 }

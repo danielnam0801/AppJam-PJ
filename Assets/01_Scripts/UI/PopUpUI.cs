@@ -58,15 +58,19 @@ public class PopUpUI : UIComponent
                 switch (moveType)
                 {
                     case UIMoveType.Left:
+                        //rectTrm.DOAnchorPosX(offpos.x, duration).SetEase(ease).OnComplete(()=>gameObject.SetActive(false));
                         rectTrm.DOAnchorPosX(offpos.x, duration).SetEase(ease);
                         break;
                     case UIMoveType.Right:
+                        //rectTrm.DOAnchorPosX(offpos.x, duration).SetEase(ease).OnComplete(() => gameObject.SetActive(false));
                         rectTrm.DOAnchorPosX(offpos.x, duration).SetEase(ease);
                         break;
                     case UIMoveType.Up:
+                        //rectTrm.DOAnchorPosY(offpos.y, duration).SetEase(ease).OnComplete(() => gameObject.SetActive(false));
                         rectTrm.DOAnchorPosY(offpos.y, duration).SetEase(ease);
                         break;
                     case UIMoveType.Down:
+                        //rectTrm.DOAnchorPosY(offpos.y, duration).SetEase(ease).OnComplete(() => gameObject.SetActive(false));
                         rectTrm.DOAnchorPosY(offpos.y, duration).SetEase(ease);
                         break;
                 }
