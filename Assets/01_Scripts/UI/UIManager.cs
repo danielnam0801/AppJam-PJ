@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIManager : MonoBehaviour
+public class UIManager : MonoSingleton<UIManager>
 {
     [SerializeField] GameObject player;
 
@@ -19,9 +19,18 @@ public class UIManager : MonoBehaviour
     [SerializeField] Text overHighText; // 화면을 넘어 올라갔을때 표시하는 Text
 
     [SerializeField] Text goldAmount; // 돈 보유량 표시 Text
+    [SerializeField] private Scrollbar _guageSlider;
 
+    public void SetGuageSliderActive(bool value)
+    {
+        _guageSlider.gameObject.SetActive(value);
+    }
 
-    // Update is called once per frame
+    public void SetGuageSliderValue(float value)
+    {
+        _guageSlider.value = value;
+    }
+
     void Update()
     {
         distance = player.transform.position.x * -1;
