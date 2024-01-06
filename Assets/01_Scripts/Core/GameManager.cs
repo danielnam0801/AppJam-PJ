@@ -45,6 +45,7 @@ public class GameManager : MonoSingleton<GameManager>
         GroundBounciess = groundMat.bounciness;
         curLimitXSpeed = reBoundXSpeed;
         SetGameState(GameState.Start);
+        GameStart();
     }
 
     public float GetReboundXSpeed(EObstacleType otType)

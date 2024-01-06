@@ -11,20 +11,28 @@ public class FadeUI : UIComponent
     [SerializeField] float duration = 1f;
     [SerializeField] Image[] images;
 
+    private void Awake()
+    {
+        SetUp(false);
+    }
+
     public override void SetUp(bool value)
     {
+        Debug.Log("Fade");
         if (value)
         {
             for (int i = 0; i < images.Length; i++)
             {
-                images[i].DOFade(1, duration).SetEase(ease);
+                images[i].DOKill();
+                images[i].DOFade(0.63f, duration).SetEase(ease).SetUpdate(true);
             }
         }
         else
         {
             for (int i = 0; i < images.Length; i++)
             {
-                images[i].DOFade(0, duration).SetEase(ease);
+                images[i].DOKill();
+                images[i].DOFade(0, duration).SetEase(ease).SetUpdate(true);
             }
         }
     }

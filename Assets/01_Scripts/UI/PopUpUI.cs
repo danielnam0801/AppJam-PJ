@@ -24,53 +24,50 @@ public class PopUpUI : UIComponent
     Vector3 offpos;
     Vector3 onpos;
 
+    RectTransform rectTrm;
+
     private void Awake()
     {
+        rectTrm = GetComponent<RectTransform>();
         switch (moveType)
         {
             case UIMoveType.Left:
-                offpos = transform.position + new Vector3(moveValue, 0);
+                offpos = rectTrm.anchoredPosition + new Vector2(moveValue, 0);
                 break;
             case UIMoveType.Right:
-                offpos = transform.position + new Vector3(-moveValue, 0);
+                offpos = rectTrm.anchoredPosition + new Vector2(-moveValue, 0);
                 break;
             case UIMoveType.Up:
-                offpos = transform.position + new Vector3(0,-moveValue);
+                offpos = rectTrm.anchoredPosition + new Vector2(0,-moveValue);
                 break;
             case UIMoveType.Down:
-                offpos = transform.position + new Vector3(0, moveValue);
+                offpos = rectTrm.anchoredPosition + new Vector2(0, moveValue);
                 break;
         }
-        onpos = transform.position;
+        onpos = rectTrm.anchoredPosition;
+        rectTrm.anchoredPosition = offpos;
     }
-    bool isOn = false;
-    public void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            SetUp(isOn);
-            isOn = !isOn;
-        }
-    }
+
+    
     public override void SetUp(bool on)
     {
         if(useFixed)
         {
-            if (on)
+            if (!on)
             {
                 switch (moveType)
                 {
                     case UIMoveType.Left:
-                        transform.DOMoveX(offpos.x, duration).SetEase(ease);
+                        rectTrm.DOAnchorPosX(offpos.x, duration).SetEase(ease);
                         break;
                     case UIMoveType.Right:
-                        transform.DOMoveX(offpos.x, duration).SetEase(ease);
+                        rectTrm.DOAnchorPosX(offpos.x, duration).SetEase(ease);
                         break;
                     case UIMoveType.Up:
-                        transform.DOMoveY(offpos.y, duration).SetEase(ease);
+                        rectTrm.DOAnchorPosY(offpos.y, duration).SetEase(ease);
                         break;
                     case UIMoveType.Down:
-                        transform.DOMoveY(offpos.y, duration).SetEase(ease);
+                        rectTrm.DOAnchorPosY(offpos.y, duration).SetEase(ease);
                         break;
                 }
             }
@@ -79,16 +76,16 @@ public class PopUpUI : UIComponent
                 switch (moveType)
                 {
                     case UIMoveType.Left:
-                        transform.DOMoveX(onpos.x, duration).SetEase(ease);
+                        rectTrm.DOAnchorPosX(onpos.x, duration).SetEase(ease);
                         break;
                     case UIMoveType.Right:
-                        transform.DOMoveX(onpos.x, duration).SetEase(ease);
+                        rectTrm.DOAnchorPosX(onpos.x, duration).SetEase(ease);
                         break;
                     case UIMoveType.Up:
-                        transform.DOMoveY(onpos.y, duration).SetEase(ease);
+                        rectTrm.DOAnchorPosY(onpos.y, duration).SetEase(ease);
                         break;
                     case UIMoveType.Down:
-                        transform.DOMoveY(onpos.y, duration).SetEase(ease);
+                        rectTrm.DOAnchorPosY(onpos.y, duration).SetEase(ease);
                         break;
                 }
             }
@@ -97,11 +94,11 @@ public class PopUpUI : UIComponent
         {
             if(on)
             {
-                transform.DOMove(onpos, duration).SetEase(ease);
+                rectTrm.DOAnchorPos(onpos, duration).SetEase(ease);
             }
             else
             {
-                transform.DOMove(offpos, duration).SetEase(ease);
+                rectTrm.DOAnchorPos(offpos, duration).SetEase(ease);
             }
         }
     }

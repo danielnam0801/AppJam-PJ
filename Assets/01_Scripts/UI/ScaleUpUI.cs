@@ -17,17 +17,18 @@ public class ScaleUpUI : UIComponent
     private void Awake()
     {
         baseVec = transform.localScale;
+        SetUp(false);
     }
 
-    bool use = false;
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            SetUp(use);
-            use = !use;
-        }
-    }
+    //bool use = false;
+    //private void Update()
+    //{
+    //    if(Input.GetKeyDown(KeyCode.Space))
+    //    {
+    //        SetUp(use);
+    //        use = !use;
+    //    }
+    //}
 
     public override void SetUp(bool value)
     {
@@ -37,13 +38,13 @@ public class ScaleUpUI : UIComponent
             if (endValue == Vector3.zero) endValue = Vector3.one;
             uiObj.transform.DOKill();
             if (loop)
-                uiObj.transform.DOScale(endValue, duration).SetEase(ease).SetLoops(-1, LoopType.Yoyo);
+                uiObj.transform.DOScale(endValue, duration).SetEase(ease).SetLoops(-1, LoopType.Yoyo).SetUpdate(true);
             else
-                uiObj.transform.DOScale(endValue, duration).SetEase(ease);
+                uiObj.transform.DOScale(endValue, duration).SetEase(ease).SetUpdate(true);
         }
         else
         {
-            uiObj.transform.DOScale(baseVec, duration).SetEase(ease);
+            uiObj.transform.DOScale(baseVec, duration).SetEase(ease).SetUpdate(true);
         }
 
     }

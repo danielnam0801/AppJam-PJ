@@ -70,6 +70,10 @@ public class UIManager : MonoSingleton<UIManager>
 
     public void GameStartUI()
     {
+        for (int i = 0; i < gamePlayUI.Length; i++)
+        {
+            gamePlayUI[i].SetUp(false);
+        }
         for (int i = 0; i < gameEndUI.Length; i++)
         {
             gameEndUI[i].SetUp(false);
@@ -88,7 +92,7 @@ public class UIManager : MonoSingleton<UIManager>
         }
         for (int i = 0; i < gamePlayUI.Length; i++)
         {
-            gamePlayUI[i].SetUp(false);
+            gamePlayUI[i].SetUp(true);
         }
     }
 
@@ -106,6 +110,7 @@ public class UIManager : MonoSingleton<UIManager>
 
     public void PauseUI(bool value)
     {
+        Debug.Log("pauseOn");
         for (int i = 0; i < gamePauseUI.Length; i++)
         {
             gamePauseUI[i].SetUp(value);

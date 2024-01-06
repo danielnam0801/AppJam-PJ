@@ -17,8 +17,20 @@ public class ButtonScript : MonoBehaviour
         //pause = GameObject.Find("Canvas/PauseUI");
         //sounds = GameObject.Find("Canvas/PauseUI/PausePane/Sound Button/Sounds Text").GetComponent<Text>();
     }
+
+    private void Update()
+    {
+        if(isPause)
+        {
+            if(Input.GetKeyDown(KeyCode.Space))
+                Resume();
+        }
+    }
+
     public void Pause()
     {
+        UIManager.Instance.PauseUI(true);
+        PlayerManager.Instance.Player.SetClick(false);
         isPause = true;
         if (isPause)
         {
@@ -29,9 +41,12 @@ public class ButtonScript : MonoBehaviour
 
     public void Resume()
     {
+        PlayerManager.Instance.Player.SetClick(true);
+        UIManager.Instance.PauseUI(false);
         isPause = false;
         pause.SetActive(false);
         Time.timeScale = 1.0f;
+        
     }
 
     public void Sounds()
