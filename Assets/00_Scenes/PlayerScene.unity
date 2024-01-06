@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -350,7 +350,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4feedf17ce6767045bdf5f8b56d8fbfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _guageSlider: {fileID: 623786643}
 --- !u!114 &140908555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2675,6 +2674,7 @@ GameObject:
   - component: {fileID: 1881401053}
   - component: {fileID: 1881401059}
   - component: {fileID: 1881401058}
+  - component: {fileID: 1881401060}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -2824,6 +2824,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &1881401060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1881401052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64d25eebd6bddb342a1756faac50439f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_roughness: 5
+  m_magnitude: 5
 --- !u!1 &1901021683
 GameObject:
   m_ObjectHideFlags: 0
@@ -3314,6 +3328,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1686489130}
     m_Modifications:
+    - target: {fileID: 635190812093323775, guid: 506f537852241254395b6f1f4c917171,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
     - target: {fileID: 2125700110440849109, guid: 506f537852241254395b6f1f4c917171,
         type: 3}
       propertyPath: m_LocalPosition.x
