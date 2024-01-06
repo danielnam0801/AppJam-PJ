@@ -46,6 +46,7 @@ public class Store : MonoBehaviour
         {
             print("업그레이드레벨");
             abilitySOs[index - 1].abilityLevel++;
+            CashManager.Instance.DecreaseCash(abilitySOs[index - 1].abilityPrice);
         }
         else
         {
