@@ -27,6 +27,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     [Header("ReboundSpeed")]
     [SerializeField] private float reBoundXSpeed = 2;
+    [SerializeField] private float xSpeedUpgradeValue = 0.1f;
     [SerializeField] private float LimitYSpeedWHale = 5;
     [SerializeField] private float LimitYSpeedJelly = 5;
     [SerializeField] private float LimitYSpeedGround = 5;
@@ -46,6 +47,11 @@ public class GameManager : MonoSingleton<GameManager>
         curLimitXSpeed = reBoundXSpeed;
         SetGameState(GameState.Start);
         GameStart();
+    }
+
+    public void UpgradeSpeedX()
+    {
+        reBoundXSpeed += xSpeedUpgradeValue;
     }
 
     public float GetReboundXSpeed(EObstacleType otType)
@@ -95,6 +101,13 @@ public class GameManager : MonoSingleton<GameManager>
                 JellyBounciess += JellyBounciessUpgradeValue;
                 break;
         }
+    }
+
+    public void UpgradeAll()
+    {
+        WhaleBounciess += WhaleBounciessUpgradeValue;
+        GroundBounciess += GroundBounciessUpgradeValue;
+        JellyBounciess += JellyBounciessUpgradeValue;
     }
 
     public void GameStart()

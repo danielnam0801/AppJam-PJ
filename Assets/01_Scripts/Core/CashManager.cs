@@ -19,4 +19,16 @@ public class CashManager : MonoSingleton<CashManager>
     {
         cash -= value;
     }
+
+    public bool UseCash(int use)
+    {
+        if(use > cash)
+        {
+            cash -= use;
+            return true;
+        }
+        else return false;
+    }
+
+    public bool MoneyCompare(int money) => money >= cash;
 }

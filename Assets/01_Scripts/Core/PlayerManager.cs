@@ -10,6 +10,7 @@ public class PlayerManager : MonoSingleton<PlayerManager>
     //[SerializeField] private float reBounceaddYSpeed = 3;
 
     [SerializeField] private float activeObstacleRange = 10f;
+    [SerializeField] private float AddShootPower = 5f;
 
     
 
@@ -64,6 +65,11 @@ public class PlayerManager : MonoSingleton<PlayerManager>
     public static Vector2 DegreeToVector2(float degree)
     {
         return RadianToVector2(degree * Mathf.Deg2Rad);
+    }
+
+    public void UpgradeCannonShootPower()
+    {
+        baseShootPower += AddShootPower;
     }
 
 }

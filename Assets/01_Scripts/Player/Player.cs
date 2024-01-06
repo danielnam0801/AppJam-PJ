@@ -227,6 +227,7 @@ public class Player : MonoBehaviour
 
     private void HitObstacle(EObstacleType obstacleType)
     {
+        CashUpGrade(obstacleType);
         ReturnGravity();
         float angle = PlayerManager.Instance.ReBounceLimitAngle;
 
@@ -243,5 +244,24 @@ public class Player : MonoBehaviour
         Vector2 shootValue = new Vector2(shootVec.x * speedX, shootVec.y * speedY);
         Debug.Log($"reboundVec : {shootValue}");
         rigidbody.AddForce(shootValue, ForceMode2D.Impulse);
+    }
+
+    private void CashUpGrade(EObstacleType obstacleType)
+    {
+        switch (obstacleType)
+        {
+            case EObstacleType.Whale:
+                CashManager.Instance.IncreaseCash(20);
+                break;
+            case EObstacleType.Ground:
+                break;
+            case EObstacleType.Rock:
+                break;
+            case EObstacleType.JellyFish:
+                CashManager.Instance.IncreaseCash(20);
+                break;
+            case EObstacleType.Water:
+                break;
+        }
     }
 }

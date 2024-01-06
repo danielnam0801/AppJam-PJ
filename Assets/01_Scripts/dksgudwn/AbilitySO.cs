@@ -11,5 +11,4 @@ public class AbilitySO : ScriptableObject
     public string abilityDescription;
     public int abilityLevel;
     public int abilityPrice; // 
-
 }
